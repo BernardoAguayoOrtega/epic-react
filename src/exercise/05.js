@@ -16,12 +16,14 @@ const smallBox = <div style={{backgroundColor: 'lightblue', fontStyle: 'italic'}
 const mediumBox = <div style={{backgroundColor: 'pink', fontStyle: 'italic'}} className="box box--medium">medium pink box</div>
 const largeBox = <div style={{backgroundColor: 'orange', fontStyle: 'italic'}} className="box box--large">large orange box</div>
 
+const Box = ({style, className, text}) => <div style={style} className={className}>{text}</div>
+
 function App() {
   return (
     <div>
-      {smallBox}
-      {mediumBox}
-      {largeBox}
+      <Box text='small lightblue' className={"box box--small"} style={{backgroundColor: 'lightblue', fontStyle: 'italic'}}/>
+      <Box text='medium pink' className={"box box--medium"} style={{backgroundColor: 'pink', fontStyle: 'italic'}}/>
+      <Box text='large orange' className={"box box--large"} style={{backgroundColor: 'orange', fontStyle: 'italic'}}/>
     </div>
   )
 }
