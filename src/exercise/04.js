@@ -11,6 +11,7 @@ function Board() {
   const status = calculateStatus(winner, squares, nextValue)
 
   function selectSquare(square) {
+    if(squares[square] !== null) return  
     const squaresCopy = [...squares]
     squaresCopy[square] = nextValue
     setSquares(squaresCopy)
