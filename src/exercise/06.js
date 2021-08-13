@@ -15,13 +15,25 @@ import {
 
 function PokemonInfo({pokemonName}) {
   const [pokemonInfo, setPokemonInfo] = React.useState(null)
+  const [error, setError] = React.useState(null)
 
   React.useEffect(() => {
     if (!pokemonName) return
+    setError(null)
     setPokemonInfo(null)
-    fetchPokemon(pokemonName).then(data => setPokemonInfo(data))
+    fetchPokemon(pokemonName)
+      .then(data => setPokemonInfo(data))
+      .catch(error => setError(error))
   }, [pokemonName])
 
+  if (error) {
+    return (
+      <div role="alert">
+        There was an error:{' '}
+        <pre style={{whiteSpace: 'normal'}}>{error.message}</pre>
+      </div>
+    )
+  }
   if (!pokemonName) return 'Submit a pokemon'
   else if (!pokemonInfo) return <PokemonInfoFallback name={pokemonName} />
   else return <PokemonDataView pokemon={pokemonInfo} />
