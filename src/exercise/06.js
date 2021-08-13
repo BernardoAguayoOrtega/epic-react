@@ -17,9 +17,8 @@ function PokemonInfo({pokemonName}) {
   const [pokemonInfo, setPokemonInfo] = React.useState(null)
 
   React.useEffect(() => {
-    fetchPokemon(pokemonName)
-      .then(info => setPokemonInfo(info))
-      .catch(() => setPokemonInfo(null))
+    if (!pokemonName) return
+    fetchPokemon(pokemonName).then(data => setPokemonInfo(data))
   }, [pokemonName])
 
   if (!pokemonName) return 'Submit a pokemon'
